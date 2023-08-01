@@ -1,15 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-
-
-
 def home(request):
-    return render(request, 'home/home.html', {})
+    # Check to see if logging in
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        
+        # Authenticate
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You Have Been Logged In!")
+            return redirect('home')
 
-def login_user(request):
-    pass
+        else:
+            messages.success(request, "There was An Error Log In, please try again")
+            return redirect('home')
+
+    else:
+        return render(request, 'home/home.html', {})
 
 
 def logout_user(request):
