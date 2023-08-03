@@ -18,7 +18,8 @@
 
 <br/>
 <a class="btn btn-secondary btn-lg" href="{% url 'home' %}" role="button">Back</a>
-<a class="btn btn-outline-danger btn-lg" href="{% url 'delete' customer_record.id %}" role="button">Delete</a>
+<a class="btn btn-danger btn-lg" href="{% url 'delete' customer_record.id %}" role="button">Delete</a>
+<a class="btn btn-warning btn-lg" href="{% url 'update-record' customer_record.id %}" role="button">Update</a>
 {% endblock %}
 
 
